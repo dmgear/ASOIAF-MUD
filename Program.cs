@@ -1,4 +1,4 @@
 ﻿using TheLongNight.Game;
 
-var game = new GameLoop();
+var game = new Game();
 game.Start();
