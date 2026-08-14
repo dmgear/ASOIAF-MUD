@@ -1,16 +1,13 @@
-namespace TheLongNight.Characters;
+namespace TheLongNight.Models;
 
 public class Player
 {
-    public string Name { get; set; } = "";
-    public int Health { get; set; } = 100;
-    public int MaxHealth { get; set; } = 100;
+    public string Name { get; internal set; } = "";
+    public double Health { get; internal set; } = 100.0;
+    public double MaxHealth { get; internal set; } = 100.0;
 
-    public Rank Rank { get; set; } = Rank.Recruit;
-    public Order Order { get; set; };
+    public int Level { get; internal set; } = 1;
+    public long Gold { get; internal set; } = 10;
 
-    public int Level { get; set; } = 1;
-    public int Gold { get; set; } = 10;
-
-    public string Location { get; set; } = "";
+    public string Location { get; internal set; } = "";
 }

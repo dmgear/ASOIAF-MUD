@@ -1,4 +1,6 @@
-namespace TheLongNight.Game;
+﻿using static TheLongNight.Commands.CommandHandler;
+
+namespace TheLongNight;
 
 public class Game
 {
@@ -19,7 +21,6 @@ public class Game
         Console.WriteLine("A cold wind blows down from the north.");
         Console.WriteLine();
 
-        
-    }
 
+    }
 }
