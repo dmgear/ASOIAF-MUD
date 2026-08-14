@@ -1,8 +1,8 @@
 namespace TheLongNight.Commands;
 
-public class CommandHandler
+public static class CommandHandler
 {
-    public bool Handle(string input)
+    public static bool Handle(string input)
     {
         string command = input.Trim().ToLower();
 
@@ -28,7 +28,7 @@ public class CommandHandler
         return true;
     }
 
-    private void Look()
+    private static void Look()
     {
         Console.WriteLine();
         Console.WriteLine("Castle Black stands before you.");
@@ -37,7 +37,7 @@ public class CommandHandler
         Console.WriteLine();
     }
 
-    private void Help()
+    private static void Help()
     {
         Console.WriteLine();
         Console.WriteLine("Available commands:");
@@ -47,9 +47,9 @@ public class CommandHandler
         Console.WriteLine();
     }
 
-    private void PrintCastleBlack()
-{
-    Console.WriteLine("""
+    internal static void PrintCastleBlack()
+    {
+        Console.WriteLine("""
 Castle Black
 
 
@@ -68,5 +68,5 @@ ____||___________||____________||___________||____________||____
 /
 ________________________________________________________________
 """);
-}
+    }
 }
