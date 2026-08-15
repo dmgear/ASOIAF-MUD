@@ -1,7 +1,20 @@
 namespace TheLongNight.Commands;
 
-public static class CommandHandler
+public class CommandHandler
 {
+    public async Task StartAsync()
+    {
+        while (true)
+        {
+            Console.Write("> ");
+
+            string input = await Console.In.ReadLineAsync() ?? "";
+
+            if (!Handle(input))
+                break;
+        }
+    }
+
     public static bool Handle(string input)
     {
         string command = input.Trim().ToLower();
@@ -50,23 +63,23 @@ public static class CommandHandler
     internal static void PrintCastleBlack()
     {
         Console.WriteLine("""
-Castle Black
+        Castle Black
 
 
-   /\                       /\                         /\
-  /  \                     /  \                       /  \
- /____\                   /____\                     /____\
- | [] |                   | [] |                     | [] |
- |    |        /\         |    |         /\          |    |
- |    |       /  \        |    |        /  \         |    |
- |    |      |    |       |    |       |    |        |    |
- |    |      |    |       |    |       |    |        |    |
- |____|______|____|_______|____|_______|____|________|____|
-    ||           ||            ||           ||           ||
-    ||           ||            ||           ||           ||
-____||___________||____________||___________||____________||____
-/
-________________________________________________________________
-""");
+           /\                       /\                         /\
+          /  \                     /  \                       /  \
+         /____\                   /____\                     /____\
+         | [] |                   | [] |                     | [] |
+         |    |        /\         |    |         /\          |    |
+         |    |       /  \        |    |        /  \         |    |
+         |    |      |    |       |    |       |    |        |    |
+         |    |      |    |       |    |       |    |        |    |
+         |____|______|____|_______|____|_______|____|________|____|
+            ||           ||            ||           ||           ||
+            ||           ||            ||           ||           ||
+        ____||___________||____________||___________||____________||____
+        /
+        ________________________________________________________________
+        """);
     }
 }
