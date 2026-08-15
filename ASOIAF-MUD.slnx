@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="TheLongNight/TheLongNight.csproj" />
+  <Project Path="app/app.csproj" />
   <Project Path="TheLongNight_Test/TheLongNight_Test.csproj" />
 </Solution>
