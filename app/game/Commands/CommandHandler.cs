@@ -2,6 +2,17 @@ namespace TheLongNight.Commands;
 
 public static class CommandHandler
 {
+    public async Task StartAsync()
+    {
+        while (true)
+        {
+            Console.Write("> ");
+
+            string input = await Console.In.ReadLineAsync() ?? "";
+
+            Handle(input);
+        }
+    }
     public static bool Handle(string input)
     {
         string command = input.Trim().ToLower();
@@ -19,6 +30,22 @@ public static class CommandHandler
             case "quit":
                 Console.WriteLine("Goodbye.");
                 return false;
+
+            case "login":
+                Login();
+                break;
+            
+            case "register":
+                Register();
+                break;
+            
+            case "create character":
+                CreateCharacter();
+                break;
+
+            case "display character information":
+                DisplayCharacterInformation();
+                break;
 
             default:
                 Console.WriteLine("Command not recognized.");
@@ -43,6 +70,7 @@ public static class CommandHandler
         Console.WriteLine("Available commands:");
         Console.WriteLine("  look");
         Console.WriteLine("  help");
+        Console.WriteLine("  Display Character Information");
         Console.WriteLine("  quit");
         Console.WriteLine();
     }

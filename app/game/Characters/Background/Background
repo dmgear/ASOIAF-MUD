@@ -1,0 +1,8 @@
+namespace TheLongNight.Characters;
+
+public class Background 
+{
+    public Region region { get; set; }
+    public HouseName? House { get; set; }
+    public bool IsBastard { get; set; }
+}
