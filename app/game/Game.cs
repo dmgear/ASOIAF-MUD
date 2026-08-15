@@ -1,51 +1,59 @@
-﻿using static TheLongNight.Commands.CommandHandler;
+﻿using TheLongNight.Accounts;
+using TheLongNight.Characters;
 
 namespace TheLongNight;
 
 public class Game
 {
-
     public async Task Start()
     {
-       
         Console.Title = "The Long Night";
 
-        Console.Clear();
+        AccountRepository repository = new AccountRepository();
+        AuthenticationService authentication =
+            new AuthenticationService(repository);
 
+        Console.Clear();
 
         Console.WriteLine("=================================");
         Console.WriteLine("          THE LONG NIGHT");
         Console.WriteLine("=================================");
         Console.WriteLine();
 
-        Console.WriteLine("Welcome to The Long Night, a text-based adventure game set in the world of Westeros.");
-        Console.WriteLine();
-        Console.WriteLine("In this game, you will create a character, explore the world, and make choices that will shape your destiny.");
-        Console.WriteLine();
-        Console.WriteLine("First, you will need to create an account or log in to an existing one.");
+        Console.WriteLine("1. Login");
+        Console.WriteLine("2. Create Account");
         Console.WriteLine();
 
-        Console.WriteLine("Let's get started!");
+        Console.Write("Choice: ");
 
-        CharacterCreation characterCreation = new CharacterCreation();
+        string choice = Console.ReadLine() ?? "";
+
+        Account? account = choice switch
+        {
+            "1" => authentication.Login(),
+            "2" => authentication.Register(),
+            _ => null
+        };
+
+        if (account == null)
+        {
+            Console.WriteLine("Unable to authenticate.");
+            return;
+        }
+
+        // Player is authenticated at this point.
+
+        CharacterCreator characterCreator = new CharacterCreator();
+
+        Player player = characterCreator.CreateCharacter();
 
         Console.WriteLine();
+        Console.WriteLine(
+            $"Welcome to the Night's Watch, {player.Name} {player.Surname}."
+        );
 
-        //PrintCastleBlack();
-
-        // Console.WriteLine();
-        // Console.WriteLine("                    THE LONG NIGHT");
-        // Console.WriteLine();
-        // Console.WriteLine("You stand before Castle Black.");
-        // Console.WriteLine("The Wall towers above you, disappearing into the clouds.");
-        // Console.WriteLine();
-        // Console.WriteLine("A cold wind blows down from the north.");
-        // Console.WriteLine();
-
-        CommandHandler commandHandler = new CommandHandler();
-
-        await commandHandler.StartAsync();
+        // Eventually:
+        //
+        // await commandHandler.StartAsync();
     }
-
-    
 }

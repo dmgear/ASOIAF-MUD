@@ -10,9 +10,11 @@ public class CommandHandler
 
             string input = await Console.In.ReadLineAsync() ?? "";
 
-            Handle(input);
+            if (!Handle(input))
+                break;
         }
     }
+
     public static bool Handle(string input)
     {
         string command = input.Trim().ToLower();
@@ -30,22 +32,6 @@ public class CommandHandler
             case "quit":
                 Console.WriteLine("Goodbye.");
                 return false;
-
-            case "login":
-                Login();
-                break;
-            
-            case "register":
-                Register();
-                break;
-            
-            case "create character":
-                CreateCharacter();
-                break;
-
-            case "display character information":
-                DisplayCharacterInformation();
-                break;
 
             default:
                 Console.WriteLine("Command not recognized.");
@@ -70,7 +56,6 @@ public class CommandHandler
         Console.WriteLine("Available commands:");
         Console.WriteLine("  look");
         Console.WriteLine("  help");
-        Console.WriteLine("  Display Character Information");
         Console.WriteLine("  quit");
         Console.WriteLine();
     }
@@ -78,23 +63,23 @@ public class CommandHandler
     internal static void PrintCastleBlack()
     {
         Console.WriteLine("""
-Castle Black
+        Castle Black
 
 
-   /\                       /\                         /\
-  /  \                     /  \                       /  \
- /____\                   /____\                     /____\
- | [] |                   | [] |                     | [] |
- |    |        /\         |    |         /\          |    |
- |    |       /  \        |    |        /  \         |    |
- |    |      |    |       |    |       |    |        |    |
- |    |      |    |       |    |       |    |        |    |
- |____|______|____|_______|____|_______|____|________|____|
-    ||           ||            ||           ||           ||
-    ||           ||            ||           ||           ||
-____||___________||____________||___________||____________||____
-/
-________________________________________________________________
-""");
+           /\                       /\                         /\
+          /  \                     /  \                       /  \
+         /____\                   /____\                     /____\
+         | [] |                   | [] |                     | [] |
+         |    |        /\         |    |         /\          |    |
+         |    |       /  \        |    |        /  \         |    |
+         |    |      |    |       |    |       |    |        |    |
+         |    |      |    |       |    |       |    |        |    |
+         |____|______|____|_______|____|_______|____|________|____|
+            ||           ||            ||           ||           ||
+            ||           ||            ||           ||           ||
+        ____||___________||____________||___________||____________||____
+        /
+        ________________________________________________________________
+        """);
     }
 }
