@@ -28,69 +28,98 @@ public class CharacterCreator
     {
         Background background = new Background();
 
+        // -------------------------
+        // Region
+        // -------------------------
+
         Console.WriteLine();
         Console.WriteLine("Choose your region:");
 
-        Region[] regions = Enum.GetValues<Region>();
+        Regions[] regions = Enum.GetValues<Regions>();
 
         for (int i = 0; i < regions.Length; i++)
         {
-            RegionData region = Regions.Get(regions[i]);
+            Region region = Region.GetRegionInformation(regions[i]);
 
             Console.WriteLine($"{i + 1}. {region.Name}");
         }
 
-        int regionChoice = GetChoice(regions.Length);
-        background.Region = regions[regionChoice - 1];
+        int regionChoice = int.Parse(Console.ReadLine() ?? "1") - 1;
+        Regions selectedRegion = regions[regionChoice];
+
+        background.Region = Region.GetRegionInformation(selectedRegion);
+
+
+        // -------------------------
+        // Noble House
+        // -------------------------
 
         Console.WriteLine();
         Console.WriteLine("Do you belong to a noble house?");
         Console.WriteLine("1. Yes");
         Console.WriteLine("2. No");
 
-        int nobleChoice = GetChoice(2);
+        int nobleChoice = int.Parse(Console.ReadLine() ?? "2");
 
         if (nobleChoice == 1)
         {
-            HouseName[] houses = Enum.GetValues<HouseName>();
+            List<House> houses =
+                House.HouseFilters.GetHousesByRegion(selectedRegion);
 
             Console.WriteLine();
             Console.WriteLine("Choose your house:");
 
-            for (int i = 0; i < houses.Length; i++)
+            for (int i = 0; i < houses.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {houses[i]}");
+                Console.WriteLine($"{i + 1}. {houses[i].Name}");
             }
 
-            int houseChoice = GetChoice(houses.Length);
+            int houseChoice = int.Parse(Console.ReadLine() ?? "1") - 1;
 
-            background.House = houses[houseChoice - 1];
+            background.House =
+                Enum.Parse<HouseName>(houses[houseChoice].Name);
         }
         else
         {
             background.House = null;
         }
 
+
+        // -------------------------
+        // Bastard
+        // -------------------------
+
         Console.WriteLine();
         Console.WriteLine("Are you a bastard?");
         Console.WriteLine("1. Yes");
         Console.WriteLine("2. No");
 
-        int bastardChoice = GetChoice(2);
+        int bastardChoice = int.Parse(Console.ReadLine() ?? "2");
 
         background.IsBastard = bastardChoice == 1;
 
+
+        // -------------------------
+        // Surname
+        // -------------------------
+
         if (background.IsBastard)
         {
-            string surname = Regions.Get(background.Region).BastardSurname;
+            // Bastards use the surname associated
+            // with their region.
+            player.Surname =
+                Region.GetRegionInformation(selectedRegion).BastardSurname ?? "";
         }
         else if (background.House.HasValue)
         {
-            string.surname = Regions.Get(background.Region).NobleSurname;
+            // Legitimate member of a noble house.
+            player.Surname =
+                House.GetHouseInformation(background.House.Value).Surname;
         }
-        else 
+        else
         {
-            surname ="";
+            // Commoner with no noble house.
+            player.Surname = "";
         }
 
         player.Background = background;

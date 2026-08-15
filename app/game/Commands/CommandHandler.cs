@@ -1,6 +1,6 @@
 namespace TheLongNight.Commands;
 
-public static class CommandHandler
+public class CommandHandler
 {
     public async Task StartAsync()
     {

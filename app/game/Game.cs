@@ -8,7 +8,6 @@ public class Game
     public async Task Start()
     {
        
-        
         Console.Title = "The Long Night";
 
         Console.Clear();

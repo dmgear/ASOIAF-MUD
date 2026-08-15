@@ -91,6 +91,7 @@ public enum HouseName
     Graceford,
     Meadows,
     // Stormlands
+    Baratheon,
     Durrandon,
     Tarth,
     Estermont,
@@ -105,6 +106,7 @@ public enum HouseName
     Penrose,
     Trant,
     // Iron Islands
+    Greyjoy,
     Greyiron,
     Drumm,
     Harlaw,
@@ -138,7 +140,11 @@ public enum HouseName
     Brune,
     Buckwell,
     Hollard,
-    Sunglass
+    Sunglass,
+
+    //Dorne
+
+    Martell
 }
 
 public class House
@@ -230,4 +236,15 @@ public class House
     };
 }
 
+
+    public static class HouseFilters
+    {
+        public static List<House> GetHousesByRegion(Regions region)
+        {
+            return Enum.GetValues<HouseName>()
+                .Select(House.GetHouseInformation)
+                .Where(h => h.Region == region)
+                .ToList();
+        }
+    }
 }

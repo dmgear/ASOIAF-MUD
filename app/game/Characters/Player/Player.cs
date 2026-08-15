@@ -14,12 +14,11 @@ public class Player
 
     public Background Background { get; internal set; }
 
-    public WatchRank Rank { get; internal set; }
+    public Rank WatchRank { get; internal set; }
 
     public void SetBackground(Background background)
     {
         Background = background;
     }
 
-    
 }
