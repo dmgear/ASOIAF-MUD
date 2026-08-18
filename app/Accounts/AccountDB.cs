@@ -39,4 +39,22 @@ public class AccountRepository
 
         SaveAccounts(accounts);
     }
+
+    public void UpdateAccount(Account updatedAccount)
+    {
+        List<Account> accounts = GetAccounts();
+
+        int index = accounts.FindIndex(
+            account => account.Username == updatedAccount.Username
+        );
+
+        if (index == -1)
+        {
+            return;
+        }
+
+        accounts[index] = updatedAccount;
+
+        SaveAccounts(accounts);
+    }
 }

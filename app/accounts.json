@@ -1,6 +1,65 @@
 [
   {
     "Username": "Dylan",
-    "PasswordHash": "7Kwq5gR5xeqLeQYhqDftLA==:ujsdZl5xDIFxUe7VpQ6MxNlKzvRbul/r7zOWjbhLexo="
+    "PasswordHash": "7Kwq5gR5xeqLeQYhqDftLA==:ujsdZl5xDIFxUe7VpQ6MxNlKzvRbul/r7zOWjbhLexo=",
+    "Characters": [
+      {
+        "Name": "rykkard",
+        "Surname": "Snow",
+        "Health": 100,
+        "MaxHealth": 100,
+        "Level": 1,
+        "Gold": 10,
+        "Location": "",
+        "Background": {
+          "Region": {
+            "Name": "The North",
+            "Description": "The North is a vast and cold region, home to the Stark family and their bannermen.",
+            "BastardSurname": "Snow"
+          },
+          "House": null,
+          "IsBastard": true
+        },
+        "WatchRank": 0
+      },
+      {
+        "Name": "Jon",
+        "Surname": "Stark",
+        "Health": 100,
+        "MaxHealth": 100,
+        "Level": 1,
+        "Gold": 10,
+        "Location": "",
+        "Background": {
+          "Region": {
+            "Name": "The North",
+            "Description": "The North is a vast and cold region, home to the Stark family and their bannermen.",
+            "BastardSurname": "Snow"
+          },
+          "House": 0,
+          "IsBastard": false
+        },
+        "WatchRank": 0
+      },
+      {
+        "Name": "Sansa",
+        "Surname": "Hill",
+        "Health": 100,
+        "MaxHealth": 100,
+        "Level": 1,
+        "Gold": 10,
+        "Location": "",
+        "Background": {
+          "Region": {
+            "Name": "The Westerlands",
+            "Description": "The Westerlands are rich in gold mines, ruled by House Lannister from Casterly Rock.",
+            "BastardSurname": "Hill"
+          },
+          "House": 48,
+          "IsBastard": true
+        },
+        "WatchRank": 0
+      }
+    ]
   }
 ]

@@ -1,0 +1,98 @@
+{
+  "locations": [
+    {
+      "id": "the_wall",
+      "name": "The Wall",
+      "description": "The immense Wall of ice stretches across the northern frontier of the Seven Kingdoms. Castle Black stands beneath it, with the King's Road running south into the Gift.",
+      "children": [
+        {
+          "id": "castle_black_gates",
+          "name": "Castle Black Gates",
+          "description": "The massive gates of Castle Black stand before you beneath the shadow of the Wall. Beyond them lies the courtyard of the Night's Watch. The King's Road stretches south toward Mole's Town.",
+          "exits": {
+            "north": "castle_black_courtyard",
+            "south": "kingsroad"
+          }
+        },
+        {
+          "id": "castle_black_courtyard",
+          "name": "Castle Black Courtyard",
+          "description": "The main courtyard of Castle Black. Brothers of the Night's Watch move throughout the yard, carrying out their duties beneath the enormous Wall.",
+          "exits": {
+            "south": "castle_black_gates",
+            "north": "castle_black_great_hall",
+            "east": "castle_black_armory",
+            "west": "castle_black_barracks",
+            "up": "top_of_the_wall"
+          }
+        },
+        {
+          "id": "castle_black_great_hall",
+          "name": "Great Hall",
+          "description": "A large stone hall where the brothers of the Night's Watch gather for meals, meetings, and ceremonies.",
+          "exits": {
+            "south": "castle_black_courtyard"
+          }
+        },
+        {
+          "id": "castle_black_barracks",
+          "name": "Barracks",
+          "description": "Rows of rough wooden bunks where the brothers of the Night's Watch sleep.",
+          "exits": {
+            "east": "castle_black_courtyard"
+          }
+        },
+        {
+          "id": "castle_black_armory",
+          "name": "Armory",
+          "description": "Weapons, armor, shields, and other equipment belonging to the Night's Watch are stored here.",
+          "exits": {
+            "west": "castle_black_courtyard"
+          }
+        },
+        {
+          "id": "castle_black_lord_commanders_tower",
+          "name": "Lord Commander's Tower",
+          "description": "The tower belonging to the Lord Commander of the Night's Watch.",
+          "exits": {
+            "down": "castle_black_courtyard"
+          }
+        },
+        {
+          "id": "top_of_the_wall",
+          "name": "Top of the Wall",
+          "description": "The summit of the Wall stretches beneath an endless sky. The lands of the North can be seen to the south, while the vast wilderness beyond the Wall stretches away to the north.",
+          "exits": {
+            "down": "castle_black_courtyard"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kingsroad",
+      "name": "King's Road",
+      "description": "The King's Road stretches south from Castle Black through the Gift toward Mole's Town.",
+      "exits": {
+        "north": "castle_black_gates",
+        "south": "moles_town"
+      }
+    },
+    {
+      "id": "moles_town",
+      "name": "Mole's Town",
+      "description": "A small settlement in the Gift where the brothers of the Night's Watch often spend their coin.",
+      "exits": {
+        "north": "kingsroad",
+        "enter": "moles_town_brothel"
+      }
+    },
+    {
+      "id": "moles_town_brothel",
+      "name": "Mole's Town Brothel",
+      "description": "A small establishment in Mole's Town frequented by men of the Night's Watch.",
+      "exits": {
+        "out": "moles_town"
+      }
+    }
+  ]
+}

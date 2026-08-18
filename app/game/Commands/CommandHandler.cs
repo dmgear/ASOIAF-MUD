@@ -1,32 +1,42 @@
+using TheLongNight.Commands;
+
 namespace TheLongNight.Commands;
 
 public class CommandHandler
 {
-    public async Task StartAsync()
+    private readonly GameCommands _commands;
+
+    public CommandHandler(GameCommands commands)
     {
-        while (true)
-        {
-            Console.Write("> ");
-
-            string input = await Console.In.ReadLineAsync() ?? "";
-
-            if (!Handle(input))
-                break;
-        }
+        _commands = commands;
     }
 
-    public static bool Handle(string input)
+    public bool Handle(string input)
     {
-        string command = input.Trim().ToLower();
+        string command =
+            input.Trim().ToLower();
+
+        if (command == "")
+        {
+            return true;
+        }
 
         switch (command)
         {
             case "look":
-                Look();
+                _commands.Look();
+                break;
+
+            case "exits":
+                _commands.DisplayExits();
+                break;
+
+            case "character":
+                _commands.DisplayCharacter();
                 break;
 
             case "help":
-                Help();
+                _commands.Help();
                 break;
 
             case "quit":
@@ -34,52 +44,45 @@ public class CommandHandler
                 return false;
 
             default:
-                Console.WriteLine("Command not recognized.");
+
+                if (command.StartsWith("move "))
+                {
+                    string direction =
+                        command.Substring(5).Trim();
+
+                    HandleMove(direction);
+                }
+                else
+                {
+                    Console.WriteLine(
+                        "Command not recognized."
+                    );
+                }
+
                 break;
         }
 
         return true;
     }
 
-    private static void Look()
+    private void HandleMove(string direction)
     {
-        Console.WriteLine();
-        Console.WriteLine("Castle Black stands before you.");
-        Console.WriteLine("The Wall rises impossibly high above.");
-        Console.WriteLine("Black-clad men move through the yard.");
-        Console.WriteLine();
-    }
+        switch (direction)
+        {
+            case "north":
+            case "south":
+            case "east":
+            case "west":
+            case "up":
+            case "down":
+                _commands.Move(direction);
+                break;
 
-    private static void Help()
-    {
-        Console.WriteLine();
-        Console.WriteLine("Available commands:");
-        Console.WriteLine("  look");
-        Console.WriteLine("  help");
-        Console.WriteLine("  quit");
-        Console.WriteLine();
-    }
-
-    internal static void PrintCastleBlack()
-    {
-        Console.WriteLine("""
-        Castle Black
-
-
-           /\                       /\                         /\
-          /  \                     /  \                       /  \
-         /____\                   /____\                     /____\
-         | [] |                   | [] |                     | [] |
-         |    |        /\         |    |         /\          |    |
-         |    |       /  \        |    |        /  \         |    |
-         |    |      |    |       |    |       |    |        |    |
-         |    |      |    |       |    |       |    |        |    |
-         |____|______|____|_______|____|_______|____|________|____|
-            ||           ||            ||           ||           ||
-            ||           ||            ||           ||           ||
-        ____||___________||____________||___________||____________||____
-        /
-        ________________________________________________________________
-        """);
+            default:
+                Console.WriteLine(
+                    $"'{direction}' is not a valid direction."
+                );
+                break;
+        }
     }
 }
